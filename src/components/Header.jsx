@@ -65,6 +65,7 @@ export default function Header() {
   const {
     state: { cart },
     dispatch,
+    productDispatch,
   } = cartState();
 
   const { filtersOpen, setFiltersOpen } = useContext(filt);
@@ -112,6 +113,12 @@ export default function Header() {
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
                 sx={{ mr: 4 }}
+                onChange={(e) => {
+                  productDispatch({
+                    type: "FILTER_BY_SEARCH",
+                    payload: e.target.value,
+                  });
+                }}
               />
             </Search>
             {/* <IconButton

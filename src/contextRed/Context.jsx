@@ -1,8 +1,6 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import { faker } from "@faker-js/faker";
-import { useReducer } from "react";
-import { cartReducer } from "./Reducer";
-import { useState } from "react";
+import { cartReducer, productReducer } from "./Reducer";
 
 export const cart = createContext();
 export const filt = createContext();
@@ -13,7 +11,7 @@ export const Context = ({ children }) => {
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    price: faker.commerce.price(),
+    price: Number(faker.commerce.price()), // Convert price to number for sorting
     image: faker.image.url(),
     inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
     fastDelivery: faker.datatype.boolean(),
@@ -22,13 +20,23 @@ export const Context = ({ children }) => {
 
   const [filtersOpen, setFiltersOpen] = useState(false);
 
+  // Use cart reducer for managing cart state
   const [state, dispatch] = useReducer(cartReducer, {
     products: products,
     cart: [],
   });
 
+  // Use product reducer for managing product filters and sorting state
+  const [productState, productDispatch] = useReducer(productReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    byRating: 0,
+    searchQuery: "",
+    sort: "", // Keep track of sort order
+  });
+
   return (
-    <cart.Provider value={{ state, dispatch }}>
+    <cart.Provider value={{ state, dispatch, productState, productDispatch }}>
       <filt.Provider value={{ filtersOpen, setFiltersOpen }}>
         {children}
       </filt.Provider>

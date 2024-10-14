@@ -9,11 +9,39 @@ import { Filters } from "./Filters";
 export const Home = () => {
   const {
     state: { products },
+    productState: { byStock, byFastDelivery, sort, byRating, searchQuery },
   } = cartState();
 
   //   const {
   //     state: { products },
   //   } = useContext(cart);
+
+  const transformProducts = () => {
+    let sortedProducts = products;
+
+    if (sort) {
+      sortedProducts = sortedProducts.sort((a, b) =>
+        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
+      );
+    }
+    if (!byStock) {
+      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
+    }
+    if (byFastDelivery) {
+      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
+    }
+    if (byRating) {
+      sortedProducts = sortedProducts.filter(
+        (prod) => prod.ratings >= byRating
+      );
+    }
+    if (searchQuery) {
+      sortedProducts = sortedProducts.filter((prod) =>
+        prod.name.toLowerCase().includes(searchQuery)
+      );
+    }
+    return sortedProducts;
+  };
 
   const { filtersOpen } = useContext(filt);
 
@@ -26,7 +54,7 @@ export const Home = () => {
           filtersOpen ? "justify-start ml-1" : "justify-center ml-0"
         } mt-5 gap-5`}
       >
-        {products.map((prod) => {
+        {transformProducts().map((prod) => {
           return <Allproducts prod={prod} key={prod.id} />;
         })}
       </div>

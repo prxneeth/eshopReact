@@ -8,16 +8,14 @@ import Typography from "@mui/material/Typography";
 import { Ratings } from "./Ratings";
 import { cartState } from "../contextRed/Context";
 
-
 export const Allproducts = ({ prod }) => {
   const {
     state: { cart },
     dispatch,
   } = cartState();
-  console.log(cart);
 
   return (
-    <div className="box-border rounded-lg shadow-md shadow-red-700 transition-transform duration-300 hover:scale-105 m-2">
+    <div className="box-border rounded-lg shadow-md shadow-red-700 transition-transform duration-300 hover:scale-95 m-2">
       <Card
         sx={{
           maxWidth: 285,
