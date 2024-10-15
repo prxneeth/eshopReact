@@ -10,6 +10,7 @@ import { Button, Rating } from "@mui/material";
 import { Ratings } from "./Ratings";
 import { useState } from "react";
 import { cartState } from "../contextRed/Context";
+import { Margin } from "@mui/icons-material";
 
 export const Filters = () => {
   //   const [rate, setRate] = useState(0);
@@ -25,13 +26,14 @@ export const Filters = () => {
       //   fullWidth
       sx={{
         bgcolor: "gray",
-        height: "100%",
-        width: "100%",
-        maxWidth: "230px",
+        // height: "120%",
+        width: "1600px",
+        maxWidth: "240px",
         marginLeft: "10px",
         marginTop: "27px",
         borderRadius: "10px",
         padding: "10px",
+        zIndex: 31,
       }}
     >
       <FormLabel
@@ -93,9 +95,18 @@ export const Filters = () => {
           checked={byFastDelivery}
         />
       </FormGroup>
+      <hr
+        style={{
+          width: "100%",
+          border: "1px solid white",
+          backgroundColor: "Red",
+          marginBottom: "15px",
+        }}
+      />
       <span>
         {" "}
-        <FormLabel>Rating</FormLabel>
+        <FormLabel sx={{ ml: 0.5 }}> Filter By Rating </FormLabel>
+        <br />
         <Ratings
           rating={byRating}
           //   onClick={(i) => setRate(i + 1)}
@@ -106,11 +117,12 @@ export const Filters = () => {
               payload: i + 1,
             })
           }
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", padding: "1px" }}
         />
       </span>
 
       <Button
+        sx={{ margin: 1 }}
         color="error"
         variant="contained"
         onClick={() =>

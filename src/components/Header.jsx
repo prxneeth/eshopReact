@@ -10,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-import { Filters } from "./Filters"; // Assuming Filters is in the same folder
+import { Filters } from "./Filters";
 import { createContext } from "react";
 import { useContext } from "react";
 import { cartState, filt } from "../contextRed/Context";
@@ -93,7 +93,7 @@ export default function Header() {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2, ml: 3 }}
-              onClick={toggleFilters} // Trigger the toggle function
+              onClick={toggleFilters}
             >
               <MenuIcon />
             </IconButton>
@@ -184,7 +184,7 @@ export default function Header() {
                       <div>
                         <span>{prod.name}</span>
                         <br />
-                        <span>${prod.price}</span>
+                        <span>₹{prod.price}</span>
                       </div>
                       <IconButton
                         size="small"
@@ -218,7 +218,6 @@ export default function Header() {
           </Toolbar>
         </AppBar>
 
-        {/* Conditionally render Filters based on filtersOpen state */}
         {/* {filtersOpen && <Filters />} */}
       </Box>
     </filt.Provider>

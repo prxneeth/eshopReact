@@ -42,10 +42,7 @@ export const Allproducts = ({ prod }) => {
           <Ratings rating={prod.ratings} />
           <Typography sx={{ fontSize: 20, ml: "4px", mb: 1, mt: 1 }}>
             {" "}
-            <span style={{ fontSize: 14, fontWeight: 500 }}>
-              {" "}
-              <sup>$</sup>
-            </span>
+            <span style={{ fontSize: 16, fontWeight: 400 }}> ₹ </span>
             {prod.price}
           </Typography>
           <Typography sx={{ ml: "4px" }}>

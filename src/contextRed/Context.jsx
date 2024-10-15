@@ -7,11 +7,11 @@ export const filt = createContext();
 faker.seed(90);
 
 export const Context = ({ children }) => {
-  const products = [...Array(20)].map(() => ({
+  const products = [...Array(30)].map(() => ({
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    price: Number(faker.commerce.price()), // Convert price to number for sorting
+    price: Number(faker.commerce.price()),
     image: faker.image.url(),
     inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
     fastDelivery: faker.datatype.boolean(),
@@ -20,19 +20,17 @@ export const Context = ({ children }) => {
 
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  // Use cart reducer for managing cart state
   const [state, dispatch] = useReducer(cartReducer, {
     products: products,
     cart: [],
   });
 
-  // Use product reducer for managing product filters and sorting state
   const [productState, productDispatch] = useReducer(productReducer, {
     byStock: false,
     byFastDelivery: false,
     byRating: 0,
     searchQuery: "",
-    sort: "", // Keep track of sort order
+    sort: "",
   });
 
   return (
@@ -44,7 +42,6 @@ export const Context = ({ children }) => {
   );
 };
 
-// Custom hook to use the cart context
 export const cartState = () => {
   return useContext(cart);
 };

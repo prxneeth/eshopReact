@@ -20,7 +20,7 @@ import { Padding } from "@mui/icons-material";
 
 export const Cart = () => {
   const {
-    state: { cart }, // Ensure `cart` is coming from your context correctly
+    state: { cart },
     dispatch,
   } = cartState();
 
@@ -50,7 +50,7 @@ export const Cart = () => {
               </ListItemAvatar>
               <Typography sx={{ mr: 2, width: "25%" }}>{prod.name}</Typography>
               <Typography sx={{ mr: 0, width: "15%" }}>
-                ${prod.price}
+                ₹ {prod.price}
               </Typography>
               <Ratings rating={prod.ratings} />
               {/* Use Material-UI Select for the dropdown */}
@@ -98,7 +98,7 @@ export const Cart = () => {
       <div className="w-1/4 bg-black-100 h-lvh flex-col justify-end p-5">
         <h1>subtotal {cart.length} items</h1>
 
-        <h3>total : ${total}</h3>
+        <h3>total : ₹ {total}</h3>
         <Button variant="contained" fullWidth>
           Checkout
         </Button>

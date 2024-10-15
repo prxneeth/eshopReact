@@ -7,7 +7,12 @@ export const Ratings = ({ rating, onClick, style }) => {
     <>
       {[...Array(5)].map((_, i) => {
         return (
-          <span key={i} onClick={() => onClick(i)} style={style}>
+          <span
+            key={i}
+            onClick={() => onClick(i)}
+            // style={{ padding: 1, mt: 1, cursor: "pointer" }}
+            className=" cursor-pointer pt-1"
+          >
             {rating > i ? (
               <StarIcon fontSize="small" />
             ) : (
